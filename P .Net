@@ -1,0 +1,43 @@
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main()
+    {
+        // Asynchronous programming in .NET using async/await pattern
+        await DoAsyncOperation();
+
+        // Traditional synchronous programming
+        DoSyncOperation();
+    }
+
+    static async Task DoAsyncOperation()
+    {
+        Console.WriteLine("Start async operation");
+        
+        // Simulating an asynchronous operation, e.g., HTTP request
+        using (HttpClient client = new HttpClient())
+        {
+            string result = await client.GetStringAsync("https://www.example.com");
+            Console.WriteLine($"Async operation result: {result}");
+        }
+
+        Console.WriteLine("End async operation");
+    }
+
+    static void DoSyncOperation()
+    {
+        Console.WriteLine("Start sync operation");
+
+        // Simulating a synchronous operation
+        using (HttpClient client = new HttpClient())
+        {
+            string result = client.GetStringAsync("https://www.example.com").Result;
+            Console.WriteLine($"Sync operation result: {result}");
+        }
+
+        Console.WriteLine("End sync operation");
+    }
+}
